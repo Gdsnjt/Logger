@@ -1,0 +1,23 @@
+# シングルトンテスト用のログ設定ファイル
+
+root:
+  level: INFO
+  propagate: false
+
+handlers:
+  console:
+    type: stream
+    level: INFO
+    formatter:
+      format: '[PID:%(process)d] %(asctime)s - %(name)s - [%(levelname)s] - %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  file:
+    type: file
+    level: INFO
+    filename: 'logs/singleton_test.log'
+    mode: 'w'  # 毎回上書き
+    encoding: 'utf-8'
+    formatter:
+      format: '[PID:%(process)d] %(asctime)s - %(name)s - [%(levelname)s] - %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
