@@ -1,0 +1,27 @@
+{
+  "root": {
+    "level": "INFO",
+    "propagate": false
+  },
+  "handlers": {
+    "console": {
+      "type": "stream",
+      "level": "INFO",
+      "formatter": {
+        "format": "%(asctime)s - %(name)s - [%(levelname)s] - %(message)s",
+        "datefmt": "%Y-%m-%d %H:%M:%S"
+      }
+    },
+    "file": {
+      "type": "file",
+      "level": "DEBUG",
+      "filename": "logs/app.log",
+      "mode": "a",
+      "encoding": "utf-8",
+      "formatter": {
+        "format": "%(asctime)s - %(name)s - [%(levelname)s] - %(filename)s:%(lineno)d - %(message)s",
+        "datefmt": "%Y-%m-%d %H:%M:%S"
+      }
+    }
+  }
+}

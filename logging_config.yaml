@@ -1,0 +1,52 @@
+# ログ設定ファイル（YAML形式）
+
+# ルートロガーの設定
+root:
+  level: DEBUG      # ログレベル: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  propagate: false # 親ロガーへの伝播を防ぐ
+
+# ハンドラーの設定
+handlers:
+  # コンソール出力
+  console:
+    type: stream
+    level: DEBUG
+    formatter:
+      format: '%(asctime)s - %(name)s - [%(levelname)s] - %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  # ファイル出力（通常）
+  file:
+    type: file
+    level: DEBUG
+    filename: 'logs/app.log'
+    mode: 'a'
+    encoding: 'utf-8'
+    formatter:
+      format: '%(asctime)s - %(name)s - [%(levelname)s] - %(filename)s:%(lineno)d - %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  # ローテーションファイル（サイズベース）
+  rotating_file:
+    type: rotating_file
+    level: INFO
+    filename: 'logs/app_rotating.log'
+    max_bytes: 10485760  # 10MB
+    backup_count: 5
+    encoding: 'utf-8'
+    formatter:
+      format: '%(asctime)s - %(name)s - [%(levelname)s] - %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  # ローテーションファイル（時間ベース）
+  timed_rotating_file:
+    type: timed_rotating_file
+    level: WARNING
+    filename: 'logs/app_timed.log'
+    when: 'midnight'  # 'S', 'M', 'H', 'D', 'midnight', 'W0'-'W6'
+    interval: 1
+    backup_count: 7
+    encoding: 'utf-8'
+    formatter:
+      format: '%(asctime)s - %(name)s - [%(levelname)s] - %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
